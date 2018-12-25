@@ -1,0 +1,38 @@
+{% extends "base_2col.html" %}
+
+{% block sidebar %}
+    <div id="sidebar"></div>
+    <div class ="sidebar-block">
+        <div class="sidebar-header">
+            Popular tags
+        </div>
+
+        {% for tag in popular_tags %}
+            <a href="{% url 'tag_page' tag_name=tag %}" style="display: inline-block">
+                <div class="tag tag-outline-info">
+                    {{ tag }}
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+
+    <div class="sidebar-block">
+        <div class="sidebar-header">
+            Best members
+        </div>
+
+        {% load static %}
+        {% for member in best_members %}
+             <div style="display: inline-block">
+                 <div class="tag tag-outline-info">
+                      {{ member }}
+                 </div>
+             </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
+{% block user %}
+    {% include "user_module.html" %}
+{% endblock %}

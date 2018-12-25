@@ -1,0 +1,56 @@
+{% extends "base_with_sidebars.html" %}
+
+{% block title %}
+    AskSysoev - Ask
+{% endblock %}
+
+{% block content %}
+
+    <div class="submit-group container">
+        <h2 class="submit-label">New question</h2>
+
+        <form enctype="multipart/form-data" method="POST" class="post-form">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Title</span>
+                </div>
+                {{ form.title }}
+                {% if form.title.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ form.title.errors }}</strong>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="input-group" style="min-height: 200px">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Question</span>
+                </div>
+                <label for="answer"></label>
+                {{ form.description }}
+                {% if form.description.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ form.description.errors }}</strong>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="form-group"></div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Tags</span>
+                </div>
+                {{ form.tag_list }}
+                {% if form.tag_list.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ form.tag_list.errors }}</strong>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="form-group"></div>
+
+            <button type="submit" class="tag tag-outline-info">ASK!</button>
+        </form>
+    </div>
+{% endblock %}

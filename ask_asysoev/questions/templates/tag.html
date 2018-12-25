@@ -1,0 +1,17 @@
+{% extends "post_list.html" %}
+
+{% block title %}
+    Ask Sysoev - {{ tag.name }}
+{% endblock %}
+
+{% block posts_top %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="sidebar-header">
+                    Tag: {{ tag.name }}
+                </h2>
+            </div>
+        </div>
+    </div>
+{% endblock %}

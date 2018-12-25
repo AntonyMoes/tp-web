@@ -1,0 +1,41 @@
+{% extends "base_with_sidebars.html" %}
+
+{% block title %}
+    AskSysoev - Login
+{% endblock %}
+
+{% block content %}
+
+    <div class="submit-group container">
+        <h2 class="submit-label">Login</h2>
+
+        <form enctype="multipart/form-data" method="POST" class="post-form">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Login</span>
+                </div>
+                {{ form.username }}
+                {% if form.username.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ form.username.errors }}</strong>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Password</span>
+                </div>
+                {{ form.password }}
+                {% if form.password.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ form.password.errors }}</strong>
+                    </div>
+                {% endif %}
+            <div class="form-group"></div>
+
+            <button type="submit" class="tag tag-outline-info">Submit</button>
+        </form>
+    </div>
+{% endblock %}

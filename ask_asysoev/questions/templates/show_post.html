@@ -1,0 +1,23 @@
+{% extends "show_answer.html" %}
+
+{% block post_title %}
+    <h5 class="card-title">
+        <a href="{%  url 'quest_page' question_id=post.id %}" style="color: #17a2b8;"> <h2>{{ post.title }}</h2> </a>
+    </h5>
+    <hr>
+{% endblock %}
+
+{% block bottom %}
+    <a href="{%  url 'quest_page' question_id=post.id %}" style="color: #17a2b8; margin-left: 50px;">Answer</a>
+
+    <div class="post-tags ">
+        Tags:
+        {% for tag in tags %}
+            <a href="{% url 'tag_page' tag_name=tag.name %}" style="display: inline-block">
+                <div class="inline-tag tag-outline-info">
+                    {{ tag.name }}
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

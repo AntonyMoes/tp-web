@@ -1,0 +1,7 @@
+{% for tag in tags %}
+    <a href="/question/tag/{{ tag }}/" style="display: inline-block">
+        <div class="tag tag-outline-info">
+            {{ tag }}
+        </div>
+    </a>
+{% endfor %}

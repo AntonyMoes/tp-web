@@ -1,0 +1,39 @@
+<div class="card card-margin">
+
+    <div class="card-body row">
+        <div class="col-md-2">
+            {% block picture %}
+                <img src="{{ post.author.avatar_path.url }}" class="post-avatar mx-auto d-block">
+            {% endblock %}
+
+            <div class="tag mx-auto d-block">
+                <div class="inline-block tag-no-margin btn-success">+</div>
+                <div class="inline-block tag-no-margin tag-outline-info "> {{ post.votes.sum_rating  }}</div>
+                <div class="inline-block tag-no-margin btn-danger">-</div>
+            </div>
+
+        </div>
+
+        <div class="col-md-10">
+            {% block post_title %}
+
+            {% endblock %}
+
+            <p class="card-text">
+                {{ post.description }}
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="card-footer text-muted">
+
+        {{ post.time }} days ago <!-- TODO: исправь костыль -->
+
+        {% block bottom %}
+        {% endblock %}
+
+    </div>
+
+</div>

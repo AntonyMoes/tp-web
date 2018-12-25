@@ -1,0 +1,15 @@
+{% load static %}
+
+<div class="avatar-group">
+    {% if user.is_authenticated and user.is_active %}
+        {% with user as user %}
+            <a href="{% url 'settings_page' %}"><div class="my-navbar-text"><img class="smaller-user-pic" src="{% static "35.png" %}"> {{ user.nickname }}</div></a> {# TODO: replace staic img with user's #}
+        {% endwith %}
+    {% else %}
+        {% with user as user %}
+            <a href="{% url 'login' %}"> <div class="my-navbar-text"> Log in </div> </a>
+            <a href="{% url 'signup_page' %}"> <div class="my-navbar-text"> Sign up </div> </a>
+        {% endwith %}
+    {% endif %}
+</div>
+

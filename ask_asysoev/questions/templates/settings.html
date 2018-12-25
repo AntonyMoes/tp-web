@@ -1,0 +1,64 @@
+{% extends "base_with_sidebars.html" %}
+
+{% block title %}
+    AskSysoev - Settings
+{% endblock %}
+
+{% block content %}
+    <div class="submit-group container">
+        <h2 class="submit-label">Settings</h2>
+
+        <form enctype="multipart/form-data" method="POST" class="post-form">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Email</span>
+                </div>
+                {# <input type="text" class="form-control" id="email" name="email">#}
+                {{ form.email }}
+            </div>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">NickName</span>
+                </div>
+                {{ form.nickname }}
+                {% if form.nickname.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ form.nickname.errors }}</strong>
+                </div>
+                {% endif %}
+            </div>
+
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Upload</span>
+                </div>
+                <div class="col-sm-4">
+                    {{ form.avatar_path }}
+                </div>
+                {% if form.avatar_path.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ form.avatar_path.errors }}</strong>
+                    </div>
+                {% endif %}
+            </div>
+
+            {% load static %}
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Preview</span>
+                </div>
+            <img src="{% static "large.jpg" %}" class="img-thumbnail submit-picture-preview">
+            </div>
+            <div class="form-group"></div>
+
+            <button type="submit" class="tag tag-outline-info">Submit</button>
+            <div class="form-group"></div>
+
+            <button type="submit" class="tag btn-outline-danger">Logout</button>
+
+        </form>
+    </div>
+{% endblock %}

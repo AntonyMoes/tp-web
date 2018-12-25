@@ -1,0 +1,10 @@
+{% extends "pagination.html" %}
+
+{% block posts %}
+    {% block posts_top %}
+    {% endblock %}
+
+    {% for post in questions %}
+        {% include "show_post.html" %}
+    {% endfor %}
+{% endblock %}

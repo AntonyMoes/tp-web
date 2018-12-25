@@ -1,0 +1,6 @@
+{% extends "show_post.html" %}
+
+{% block picture %}
+    {% load static %}
+    <img src="{{ post.author.avatar_path.url }}"> <!-- TODO: адрес фото - из вьюхи -->
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base_with_sidebars.html" %}
+
+{% block content %}
+    {% block posts %}
+    {% endblock %}
+
+    {% block pagination %}
+        <div class="row justify-content-center page-item">
+            {% load bootstrap4 %}
+            {% bootstrap_pagination questions %}
+        </div>
+    {% endblock %}
+{% endblock %}
+
+
+

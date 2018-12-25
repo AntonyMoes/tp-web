@@ -1,0 +1,29 @@
+{% extends "post_list.html" %}
+
+{% block title %}
+    Ask Sysoev - Main
+{% endblock %}
+
+{% block posts_top %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <h2 class="sidebar-header">
+                    {% if mode == "new" %}
+                        New questions
+                    {% else %}
+                        Hot questions
+                    {% endif %}
+                </h2>
+            </div>
+
+            <div class="col-md-4">
+                {% if mode == "new" %}
+                    <a href="{% url 'hot_page' %}"><h2 class="sidebar-header">Hot questions</h2></a>
+                {% else %}
+                    <a href="{% url 'main_page' %}"><h2 class="sidebar-header">New questions</h2></a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
