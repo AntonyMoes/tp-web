@@ -9,6 +9,7 @@ class SettingsForm(forms.ModelForm):
         fields = ('username', 'email', 'nickname', 'avatar_path',)
 
 
+
 class LoginForm(forms.ModelForm):
     class Meta:
         model = Profile
@@ -20,7 +21,11 @@ class AskForm(forms.ModelForm):
 
     class Meta:
         model = Question
-        fields = ('title', 'description',)
+        fields = ('title', 'description', 'tags',)
+
+    #def clean_tags(self):
+
+
 
 
 class SignupForm(forms.ModelForm):

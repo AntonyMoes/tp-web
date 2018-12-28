@@ -1,9 +1,16 @@
+import os
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ask_asysoev.settings")
+
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
+
 from django.core.management.base import BaseCommand, CommandError
-from django.contrib.contenttypes.models import ContentType
 from faker import Faker
 from questions.models import *
 from random import randint, seed, choice
 from time import time
+
+
 
 
 class Command(BaseCommand):
@@ -11,7 +18,7 @@ class Command(BaseCommand):
     def tag_generator(self, count):
         for _ in range(count):
             try:
-                Tag.objects.create(name=self.fake.text(10).split()[0].rstrip('.'))
+                Tag.objects.create(name=self.fake.text(15))
             except:
                 print('Tagerror')
 
@@ -28,9 +35,9 @@ class Command(BaseCommand):
     def answer_generator(self, q, count, profiles, tags_list):
         for _ in range(count):
             auth = self.fake.random_element(profiles)
-            Answer.objects.create(text=self.fake.text(100),
+            Answer.objects.create(description=self.fake.text(100),
                                   author=auth,
-                                  question=q)
+                                  question=q,)
 
     def question_generator(self, count, profiles, tags_list):
         q = None
@@ -45,9 +52,10 @@ class Command(BaseCommand):
                 for tag in new_tags:
                     q.tags.add(tag)
                 q.save()
+                self.answer_generator(q, randint(1, 5), profiles, tags_list)
             except:
                 print('Questionerror')
-            self.answer_generator(q, randint(1, 5), profiles, tags_list)
+
 
     def votes_questions_generator(self, count, profiles, questions, answers):
         for _ in range(count):
@@ -69,11 +77,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         self.fake = Faker()
-        profiles = list(Profile.objects.all()[1:])
-        tags_list = list(Tag.objects.all()[0:])
         questions = list(Question.objects.all()[0:])
         answers = list(Answer.objects.all()[0:])
-        self.tag_generator(10)
-        self.user_generator(4)
-        self.question_generator(10, profiles, tags_list)
-        self.votes_questions_generator(10, profiles, questions, answers)
+        self.tag_generator(100)
+        self.user_generator(40)
+        profiles = list(Profile.objects.all()[1:])
+        tags_list = list(Tag.objects.all()[0:])
+        self.question_generator(10000, profiles, tags_list)
+        self.votes_questions_generator(100000, profiles, questions, answers)

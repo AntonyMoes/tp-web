@@ -1,3 +1,10 @@
+import os
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ask_asysoev.settings")
+
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
+
+
 from django.core.management.base import BaseCommand, CommandError
 from faker import Faker
 from questions.models import *

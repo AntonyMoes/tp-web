@@ -1,0 +1,6 @@
+.idea
+_asysoev/.gitignore 
+__pycache__/
+*.py[cod]
+*$py.class
+
